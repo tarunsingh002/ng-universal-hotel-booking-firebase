@@ -1,18 +1,21 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
 import {
   AuthService,
   responseData,
-} from "../../services/auth-services/auth.service";
-import { NgForm } from "@angular/forms";
-import { Observable } from "rxjs";
-import { Router } from "@angular/router";
+} from '../../services/auth-services/auth.service';
+import { NgForm } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import test from 'node:test';
 
 @Component({
-  selector: "app-auth",
-  templateUrl: "./auth.component.html",
-  styleUrls: ["./auth.component.css"],
+  selector: 'app-auth',
+  templateUrl: './auth.component.html',
+  styleUrls: ['./auth.component.css'],
 })
-export class AuthComponent {
+export class AuthComponent implements OnInit {
+  _email: string;
+  _password: string;
   signUpMode = false;
   errorMessage: string = null;
   isLoading = false;
@@ -21,6 +24,11 @@ export class AuthComponent {
 
     private router: Router
   ) {}
+
+  ngOnInit(): void {
+    this._email = 'test@test.com';
+    this._password = 'tester';
+  }
 
   formSubmitted(form: NgForm) {
     this.isLoading = true;
@@ -34,7 +42,7 @@ export class AuthComponent {
     authObs.subscribe(
       (res) => {
         this.isLoading = false;
-        this.router.navigate(["hotels"]);
+        this.router.navigate(['hotels']);
       },
       (error) => {
         this.isLoading = false;

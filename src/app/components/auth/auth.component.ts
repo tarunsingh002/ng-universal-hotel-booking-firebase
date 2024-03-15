@@ -13,9 +13,7 @@ import test from 'node:test';
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.css'],
 })
-export class AuthComponent implements OnInit {
-  _email: string;
-  _password: string;
+export class AuthComponent {
   signUpMode = false;
   errorMessage: string = null;
   isLoading = false;
@@ -24,11 +22,6 @@ export class AuthComponent implements OnInit {
 
     private router: Router
   ) {}
-
-  ngOnInit(): void {
-    this._email = 'user@gmail.com';
-    this._password = 'user1234';
-  }
 
   formSubmitted(form: NgForm) {
     this.isLoading = true;
